@@ -20,6 +20,8 @@
 
     $app->get('/posts', 'PostsController:listar');
     $app->get('/inserir', 'PostsController:inserir');
+    $app->get('/atualizar', 'PostsController:atualizar');
+    $app->get('/deletar', 'PostsController:deletar');
     $app->get('/busca', 'PostsController:buscaPorPost');
 
     $app->run();

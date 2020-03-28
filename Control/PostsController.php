@@ -14,8 +14,7 @@ class PostsController{
         
     public function inserir($request, $response, $args){
         $var = $request->getParsedBody();
-        $post = new Posts(0, $var['description'], $var['completed'], $var['created_at'], $var['update_at']);
-        //$post = new Posts($var['description'], $var['completed'], $var['created_at'], $var['update_at']);
+        $post = new Posts(0, $var['description'], $var['completed'], date($_POST['created_at'], date($_POST['update_at'])));
         $dao = new PostsDAO();
         $response = $response->withJson($post);
         $response = $response->withHeader('Content-type', 'application/json');

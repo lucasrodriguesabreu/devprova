@@ -7,13 +7,11 @@ class Posts{
     public $update_at;
     public $created_at;
 
-    public function __construct($id, $description, $completed, $update_at, $created_at){
+    public function __construct($id, $description, $completed){
 
         $this->id = $id;
         $this->description = $description;
         $this->completed = $completed;
-        $this->update_at = $update_at;
-        $this->created_at = $created_at;
     }
 
     public function getId()

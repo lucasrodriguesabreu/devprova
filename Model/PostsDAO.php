@@ -17,13 +17,11 @@ class PostsDAO{
 
     public function inserir(Posts $posts){
         $query = "INSERT INTO posts(description, completed, update_at, created_at) VALUES 
-        (:description, ':completed', :update_at, :created_at)";
+        (:description, ':completed', NOW(), NOW())";
         $pdo = db::dbConnection();
         $comando = $pdo->prepare($query);
         $comando->bindParam(":description", $posts->description);
         $comando->bindParam(":completed", $posts->completed);
-        $comando->bindParam(":update_at", $posts->update_at);
-        $comando->bindParam(":created_at", $posts->created_at);
         $comando->execute();
         $posts->id = $pdo->lastInsertId();
         return $posts;

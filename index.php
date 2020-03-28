@@ -19,10 +19,10 @@
     $app = new App($config);
 
     $app->get('/posts', 'PostsController:listar');
-    $app->get('/inserir', 'PostsController:inserir');
-    $app->get('/atualizar', 'PostsController:atualizar');
-    $app->get('/deletar', 'PostsController:deletar');
-    $app->get('/busca', 'PostsController:buscaPorPost');
+    $app->post('/posts', 'PostsController:inserir');
+    $app->put("/posts/{id:[0-9]+}", 'PostsController:atualizar');
+    $app->delete('/posts/{id:[0-9]+}', 'PostsController:deletar');
+    $app->get('/posts/{id:[0-9]+}', 'PostsController:buscaPorPost');
 
     $app->run();
 ?>

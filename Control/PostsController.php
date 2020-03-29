@@ -9,6 +9,7 @@ class PostsController{
         $response = $response->withHeader("Content-type", "application/json");
         return $response;
     }
+    
         
     public function inserir($request, $response, $args){
         $var = $request->getParsedBody();
@@ -33,5 +34,12 @@ class PostsController{
         return $response;
     }
 
+    public function deletar(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $args){
+        $id = (int) $args['id'];
+        $dao = new PostsDAO();
+        $posts = $dao->deletar($id);
+        $dao->deletar($id);
+        return $response->withStatus(200)->withHeader('Location', "http://localhost/devprova/posts");
+    }
 }
 ?>

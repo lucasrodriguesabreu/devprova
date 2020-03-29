@@ -36,5 +36,13 @@ class PostsDAO{
         $comando->execute();
         return $post;
     }
+    
+    public function deletar($id){
+        $query = "DELETE from posts WHERE id = :id";
+        $pdo = db::dbConnection();
+        $comando = $pdo->prepare($query);
+        $comando->bindParam(":id", $id);
+        $comando->execute();
+    }
 }
 ?>

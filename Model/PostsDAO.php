@@ -44,5 +44,14 @@ class PostsDAO{
         $comando->bindParam(":id", $id);
         $comando->execute();
     }
+    public function buscaPorPost($id){
+        $query = "SELECT * FROM posts WHERE id = :id";
+        $pdo = db::dbConnection();
+        $comando = $pdo->prepare($query);
+        $comando->bindParam(":id", $id);
+        $comando->execute();
+        $resultado = $comando->fetch(PDO::FETCH_OBJ);
+        return new Posts($resultado->id, $resultado->description, $resultado->update_at, $resultado->created_at);
+    }
 }
 ?>

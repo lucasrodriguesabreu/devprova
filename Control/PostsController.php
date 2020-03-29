@@ -41,5 +41,14 @@ class PostsController{
         $dao->deletar($id);
         return $response->withStatus(200)->withHeader('Location', "http://localhost/devprova/posts");
     }
+
+    public function buscaPorPost($request, $response, $args){
+        $id = (int) $args['id'];
+        $dao = new PostsDAO();
+        $post = $dao->buscaPorPost($id);
+        $response = $response->withJson($post);
+        $response = $response->withHeader('Content-type', 'application/json');
+        return $response;
+    }
 }
 ?>

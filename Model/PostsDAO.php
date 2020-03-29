@@ -16,8 +16,8 @@ class PostsDAO{
     }
 
     public function inserir(Posts $posts){
-        $query = "INSERT INTO posts(description, completed, update_at, created_at) VALUES 
-        (:description, ':completed', NOW(), NOW())";
+        $query = "INSERT INTO posts(description, completed ) VALUES 
+        (:description, :completed)";
         $pdo = db::dbConnection();
         $comando = $pdo->prepare($query);
         $comando->bindParam(":description", $posts->description);
@@ -26,36 +26,15 @@ class PostsDAO{
         $posts->id = $pdo->lastInsertId();
         return $posts;
     }
-
-    public function atualizar(Posts $posts){
-        $query = "UPDATE produto SET description = :description, completed = :completed, update_at = :update_at, 
-        created_at = :created_at, WHERE id = :id";
+    public function atualizar(Posts $post){
+        $query = "UPDATE posts SET description = :description, completed = :completed, update_at = NOW()  WHERE id = :id";
         $pdo = db::dbConnection();
         $comando = $pdo->prepare($query);
-        $comando = bindParam(":description", $posts->description);
-        $comando = bindParam(":completed", $posts->completed);
-        $comando = bindParam(":update_at", $posts->update_at);
-        $comando = bindParam(":created_at", $posts->created_at);
+        $comando->bindParam(":id", $post->id);
+        $comando->bindParam(":description", $post->description);
+        $comando->bindParam(":completed", $post->completed);
         $comando->execute();
-        return $posts;
-    }
-
-    public function deletar($id){
-        $query = "DELETE from cliente WHERE id = :id";
-        $pdo = db::dbConnection();
-        $comando = $pdo->prepare($query);
-        $comando->bindParam(":id", $id);
-        $comando->execute();
-    }
-
-    public function buscaPorPost($id){
-        $query = "SELECT * FROM posts WHERE id = :id";
-        $pdo = db::dbConnection();
-        $comando = $pdo->prepare($query);
-        $comando = $pdo->bindParam(":id", $id);
-        $comando->execute();
-        $resultado = $comando->fetch(PDO::FETCH_OBJ);
-        return new Posts($resultado->id, $resultado->description, $resultado->update_at, $resultado->created_at);
+        return $post;
     }
 }
 ?>

@@ -25,4 +25,5 @@
     $app->get('/posts/{id:[0-9]+}', 'PostsController:buscaPorPost');
 
     $app->run();
+    
 ?>

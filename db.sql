@@ -25,15 +25,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `posts`
+-- Estrutura da tabela `Funcionários`
 --
 
-CREATE TABLE `posts` (
+CREATE TABLE funcionarios (
   `id` int(10) UNSIGNED NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `completed` tinyint(1) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `salario` int(10) NOT NULL,
+  `cpf` int(11) NOT NULL,
+  `conta_bancaria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `posts` (
 --
 -- Índices para tabela `posts`
 --
-ALTER TABLE `posts`
+ALTER TABLE funcionarios
   ADD PRIMARY KEY (`id`);
 
 --
@@ -53,7 +53,7 @@ ALTER TABLE `posts`
 --
 -- AUTO_INCREMENT de tabela `posts`
 --
-ALTER TABLE `posts`
+ALTER TABLE funcionarios
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
